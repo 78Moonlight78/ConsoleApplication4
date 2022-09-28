@@ -1,15 +1,55 @@
 ﻿#include <bitset>
 #include <iostream>
+#include <string>
+#include <sstream>
+
+
+using namespace std;
+
+bool correct_float(string s) {
+    istringstream iss(s);
+    float f;
+    iss >> noskipws >> f;
+    return iss.eof() && !iss.fail();
+}
+/// <summary>
+/// 7. Поменять местами значения рядом стоящих бит в парах. Количество пар и номер старшего разряда левой пары задаётся с клавиатуры.
+/// </summary>
+/// <param name="n"></param>
+template<size_t N>
+void function_7(bitset<N> n) {
+    
+}
+
 
 int main()
 {
-    float x = 15.375;
-    unsigned long int y = 12566;
+    union
+    {
+        float input; // assumes sizeof(float) == sizeof(int)
+        int   output;
+    } data;
+    string sf, su;
 
-    std::cout << std::bitset<sizeof(y)* CHAR_BIT>(y);
-    std::cout << '\n';
+    
+    data.input = 2.25125;
+    unsigned long int y = 12566;
+    
+    do {
+        cin >> sf;
+    } while (correct_float(sf) != 1);
+    cout << "Corrrect";
+    cin >> su;
+    y = stoul(su);
+
+    data.input = stof(sf);
+    //метод по преобразованию unsigned long  в двоичное предстваление
+    bitset<sizeof(y)* CHAR_BIT> a1 (y) ;
+
     //метод по преобразованию float в двоичное предстваление 
-    for (int i = sizeof(x) - 1; i >= 0; i--)
-        std::cout << std::bitset<8>(reinterpret_cast<char*>(&x)[i]);
-    std::cout << '\n';
+    bitset<sizeof(float)* CHAR_BIT> bits(data.output);
+    cout << bits<<"\n";
+
+    function_16(bits);
+    cout << a1;
 }
