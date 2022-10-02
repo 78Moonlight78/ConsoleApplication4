@@ -32,30 +32,6 @@ bool correct_float(string s) {
     iss >> noskipws >> f;
     return iss.eof() && !iss.fail();
 }
-/// <summary>
-/// 7. Поменять местами значения рядом стоящих бит в парах. Количество пар и номер старшего разряда левой пары задаётся с клавиатуры.
-///
-/// </summary>
-/// <param name="n"></param>
-unsigned int swapBitsUI(unsigned int  n, int p1, int p2)
-{
-    //left-shift 1 p1 and p2 times
-    //and using XOR
-    if (((n & (1 << p1)) >> p1) ^ ((n & (1 << p2)) >> p2))
-    {
-        n ^= 1 << p1;
-        n ^= 1 << p2;
-    }
-    return n;
-}
-unsigned int swapUI(unsigned int n, int id, int count) {
-    for (int i = id; i > id - count * 2; i -= 2) {
-        n = swapBitsUI(n, --i, i);
-
-        cout << n << i << endl;
-    }
-    return n;
-}
 
 
 int main()
@@ -125,7 +101,7 @@ int main()
                 cin.clear(); // Снимает ошибку
                 cin.get();
             }
-            while (id < 31 || id < 1) {
+            while (id > 31 || id < 1) {
                 cout << "Попробуйте еще раз! Введитe номер элемента: ";
                 cin >> id;
                 if (!cin) {
@@ -151,12 +127,17 @@ int main()
                 }
             }
             bitset<sizeof(float)* CHAR_BIT> bits(data.output);
-            cout << "Значение float: " << bits << "\n";
-            ///for (int i = count; i > id - count * 2; i -= 2) {
+            cout << "Значение float до преобразований:    " << bits << endl;
 
-            ///}
-            bitset<sizeof(y)* CHAR_BIT> b1(y);
-            cout << "Значение unsigned int после преобразований: " << b1 << endl;
+            for (int i = id; i > id - count * 2; i -= 2) {
+                b1 = bits[i];
+                j = i - 1;
+                b2 = bits[j];
+                bits[j] = b1;
+                bits[i] = b2;
+            }
+      
+            cout << "Значение float после преобразований: " << bits << endl;
 
         }
         else if (n == 3) {
