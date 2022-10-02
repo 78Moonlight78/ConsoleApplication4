@@ -1,3 +1,3 @@
 ﻿  ConsoleApplication4.cpp
-C:\Users\Dasha\source\repos\ConsoleApplication4\ConsoleApplication4\ConsoleApplication4.cpp(32,25): warning C4305: =: усечение из "double" в "float"
+C:\Users\Dasha\source\repos\ConsoleApplication4\ConsoleApplication4\ConsoleApplication4.cpp(11,23): warning C4018: <: несоответствие типов со знаком и без знака
   ConsoleApplication4.vcxproj -> C:\Users\Dasha\source\repos\ConsoleApplication4\Debug\ConsoleApplication4.exe
